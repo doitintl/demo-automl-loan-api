@@ -1,5 +1,5 @@
 images:
-- 'eu.gcr.io/doitintl-demo/cloud-run/demo-automl-loan-api'
+- 'gcr.io/doitintl-demo/cloud-run/demo-automl-loan-api'
 steps:
 - name: 'gcr.io/cloud-builders/gsutil'
   args: ['cp','-r', 'gs://doit-demo/loan/*', './']
