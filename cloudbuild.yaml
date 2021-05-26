@@ -1,0 +1,11 @@
+images:
+- 'eu.gcr.io/doitintl-demo/cloud-run/demo-automl-loan-api'
+steps:
+- name: 'gcr.io/cloud-builders/gsutil'
+  args: ['cp -r', 'gs://doit-demo/loan/*', './']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'eu.gcr.io/doitintl-demo/cloud-run/demo-automl-loan-api', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'eu.gcr.io/doitintl-demo/cloud-run/demo-automl-loan-api']
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['run', 'deploy', 'demo-automl-loan-api', '--image', 'gcr.io/doitintl-demo/demo-automl-loan-api', '--region', 'europe-west4', '--platform', 'managed', '--memory', '1Gi', '--allow-unauthenticated', '--max-instances', '5', '--port', '8501']
